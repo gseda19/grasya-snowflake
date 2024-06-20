@@ -12,7 +12,7 @@
 with source_data as (
     select 1 as id,
     0 as new_number,
-    3 as third_number
+    4 as third_number
 )
 
 select *
