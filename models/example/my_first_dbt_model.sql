@@ -10,14 +10,10 @@
 {{ config(materialized='table') }}
 
 with source_data as (
-
-    select 14 as id
-    union all
-    select null as id
-
+    select 1 as id,
+    0 as new_number,
+    12 as third_number
 )
 
 select *
 from source_data
-
-where id is not null
