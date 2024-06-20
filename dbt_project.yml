@@ -41,3 +41,8 @@ models:
     example:
       banana:
         +materialized: table
+    dynamic_tables:
+      materialized: dynamic_table
+      +on_configuration_change: apply
+      +target_lag: downstream
+      +snowflake_warehouse: TRANSFORMING
