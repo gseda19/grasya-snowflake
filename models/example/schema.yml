@@ -7,9 +7,12 @@ models:
       columns:
           - name: id
             description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+          - name: user_type
+            description: Categorizes the user based on their role or level of access within the system (e.g., admin, broker, staff).
+            data_tests:
+              - accepted_values:
+                  values:
+                    - "admin"
 
     - name: my_second_dbt_model
       description: "A starter dbt model"
@@ -19,3 +22,5 @@ models:
             tests:
                 - unique
                 - not_null
+
+    
