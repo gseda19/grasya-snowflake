@@ -9,7 +9,7 @@ models:
             description: "The primary key for this table"
           - name: user_type
             description: Categorizes the user based on their role or level of access within the system (e.g., admin, broker, staff).
-            data_tests:
+            tests:
               - not_null
               - unique
 
@@ -19,7 +19,7 @@ models:
       columns:
           - name: id
             description: "The primary key for this table"
-            tests:
+            data_tests:
                 - unique
                 - not_null
 
