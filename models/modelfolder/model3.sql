@@ -1,4 +1,4 @@
 {{ config(materialized='table') }}
 
 select 1 as id,
-3 as number
+4 as number
