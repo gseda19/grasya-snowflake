@@ -11,10 +11,11 @@
 
 with source_data as (
     select 1 as id,
-    3 as new_number,
+   /* 3 as new_number,
     6 as third_number,
     4 as fourth_number,
     'uzer' as user_type
+    */
 )
 
 select *

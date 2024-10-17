@@ -7,11 +7,7 @@ models:
       columns:
           - name: id
             description: "The primary key for this table"
-          - name: user_type
-            description: Categorizes the user based on their role or level of access within the system (e.g., admin, broker, staff).
-            tests:
-              - not_null
-              - unique
+   
 
 
     - name: my_second_dbt_model
