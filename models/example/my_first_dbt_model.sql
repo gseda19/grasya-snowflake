@@ -10,7 +10,7 @@
 {{ config(materialized='table') }}
 
 with source_data as (
-    SELECT 2 as id,
+    select 2 as id,
     CURRENT_TIMESTAMP() AS updated_at,
    /* 3 as new_number,
     6 as third_number,
