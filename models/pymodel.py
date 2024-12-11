@@ -1,5 +1,4 @@
 from snowflake.snowpark import DataFrame, functions as F, Window, types as T, Session
-from datetime import datetime, date, timedelta
 from snowflake.snowpark.functions import col
 
 def model(dbt, session: Session):
