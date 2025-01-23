@@ -1,0 +1,7 @@
+version: 2
+
+sources:
+  - name: DBT_GSEDA
+    database: ANALYTICS
+    tables:
+      - name: MY_FIRST_DBT_MODEL

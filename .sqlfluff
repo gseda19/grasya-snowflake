@@ -1,6 +1,7 @@
 [sqlfluff]
-dialect = duckdb
 templater = dbt
+# This change (from jinja to dbt templater) will make linting slower
+# because linting will first compile dbt code into data warehouse code.
 runaway_limit = 10
 max_line_length = 80
 indent_unit = space
