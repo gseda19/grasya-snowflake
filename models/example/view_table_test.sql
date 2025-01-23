@@ -1,9 +1,6 @@
 {{
     config(
         materialized="table",
-        post_hook=[
-            "ALTER TABLE DBT_GSEDA.view_table_test ADD Email varchar(255);"
-            ],
     )
 }}
 select * 
