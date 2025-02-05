@@ -9,4 +9,4 @@ models:
         constraints:
           - type: not_null
     versions:
-      - v: 2
+      - v: 3
