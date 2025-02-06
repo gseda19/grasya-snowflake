@@ -9,7 +9,7 @@ models:
         constraints:
           - type: not_null
     versions:
-     - v: 2
+     - v: 1
   - name: my_first_dbt_model
     config:
       contract:
@@ -20,4 +20,4 @@ models:
         constraints:
           - type: not_null
     versions:
-      - v: 2
+      - v: 1
