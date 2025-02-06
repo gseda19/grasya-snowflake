@@ -3,7 +3,7 @@ models:
     config:
       contract:
         enforced: true
-      deprecation_date: "2024-12-21"
+      deprecation_date: "2024-12-22"
     columns:
       - name: id
         data_type: int
