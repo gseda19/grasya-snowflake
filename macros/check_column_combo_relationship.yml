@@ -1,0 +1,3 @@
+tests:
+  - name: check_column_combo_relationship
+    description: this is a test
