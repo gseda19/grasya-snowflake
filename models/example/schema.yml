@@ -8,7 +8,7 @@ models:
       columns:
           - name: id
             description: "The primary key for this table"
-            tags: [my_tag, my_tag_2]
+            tags: ['my_tag', 'my_tag_2']
 
 
     - name: my_second_dbt_model
