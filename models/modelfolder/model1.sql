@@ -1,3 +1,3 @@
-{{ config(materialized='table') }}
-
-select 4 as id
+with cte as (select 'name' as topg)
+ 
+ select * from cte
