@@ -7,3 +7,11 @@ seeds:
         country_code: varchar(3)
         region_code: varchar(3)
         sub_region_code: varchar(3)
+      schema: dbt_gseda
+      grants:
+        +select: ['{%- if target.name == "dev" -%} gvr_snflk_edw_transformation_dev
+                 {%- elif target.name == "gvr_dev" -%} _gvr_dev_data_mart_scm_global_full 
+                 {%- elif target.name == "gvr_uat" -%} _gvr_uat_data_mart_scm_global_full
+                 {%- elif target.name == "gvr_prod" -%} _gvr_prod_data_mart_scm_global_full
+                 {%- endif -%}'
+                 ]
