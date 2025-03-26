@@ -49,3 +49,7 @@ models:
       +on_configuration_change: apply
       +target_lag: downstream
       +snowflake_warehouse: TRANSFORMING
+seeds:
+  +grants:
+    select:
+      - TRANSFORMERS
