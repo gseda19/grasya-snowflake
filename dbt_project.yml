@@ -45,11 +45,6 @@ models:
     elementary:
       +schema: "elementary"
     dynamic_tables:
-      materialized: dynamic_table
-      +on_configuration_change: apply
-      +target_lag: downstream
-      +snowflake_warehouse: TRANSFORMING
-seeds:
-  +grants:
-    select:
-      - TRANSFORMERS
+      +materialized: 'dynamic_table'
+      +target_lag: "{{ 'downstream' if target.name in ('default', 'ci') else '20 minutes' }}"
+      +snowflake_warehouse: "{{ 'transforming' if target.name in ('default', 'ci') else 'developing' }}"
