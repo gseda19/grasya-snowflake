@@ -1,0 +1,1 @@
+{{ get_limit_subquery_sql("select * from foo", limit=100) }}
