@@ -1,0 +1,64 @@
+{% macro get_limit_subquery_sql(sql, limit=None) %}
+{#-
+    Macro: get_limit_subquery_sql
+
+    Purpose:
+        Clean and optionally wrap a SQL statement in a subquery with LIMIT for debugging, sampling, or controlled result set retrieval.
+        Ensures existing LIMIT clauses are respected and not reapplied.
+
+        This macro is used by the DBT Cloud IDE to limit the results of a previewed query and overrides the IDE setting where limits are
+        supplied.
+
+    Parameters:
+        sql (string): The input SQL statement (required).
+        limit (integer, optional): Number of rows to limit results to, if not already limited.
+
+    Logic:
+        1. Cleans the input SQL:
+            - Removes single-line (--) and multi-line (/* ... */) comments.
+            - Removes trailing semicolons and excess whitespace.
+        2. Detects presence of a LIMIT clause in the input.
+        3. If LIMIT is present, returns cleaned SQL as-is.
+        4. If LIMIT is absent, wraps SQL in a subquery and applies LIMIT if provided.
+
+    Example Usage:
+        {{ get_limit_subquery_sql("select * from my_table", limit=100) }}
+
+    Example Output (if no LIMIT in input SQL):
+        select *
+        from (
+            select * from my_table
+        ) as model_limit_subq
+        limit 100
+-#}
+    {# Clean up SQL statement #}
+    {%- set sql = sql
+        | trim %}
+
+    {# Remove a trailing semicolon if present #}
+    {%- set sql_no_semicolon = sql[:-1] if sql.endswith(';') else sql -%}
+
+    {#-- collapse newlines, single and multiline comments --#}
+    {%- set re = modules.re %}    
+    {%- set cleaned = re.sub('(?m)--.*?$', '', sql_no_semicolon) %}
+    {%- set cleaned = re.sub('(?s)/\\*.*?\\*/', '', cleaned) %}
+    {%- set cleaned = cleaned
+        | replace('\r', ' ')
+        | replace('\n', ' ')
+        | trim %}
+
+    {#-- test for limit --#}
+    {%- set limit_pattern = '\\blimit\\b\\s*\\d+\\s*(offset\\s+\\d+)?$' %}
+    {%- set is_limit_sql =  re.search(limit_pattern, cleaned, re.IGNORECASE) %}
+    {%- if is_limit_sql %}
+        {{ sql }}
+    {%- else %}
+        select *
+        from (
+            {{ sql_no_semicolon }}
+        ) as model_limit_subq
+        {%- if limit %}
+        limit {{ limit }}
+        {%- endif %}
+    {%- endif %}
+{%- endmacro %}
