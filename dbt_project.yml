@@ -42,9 +42,15 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   my_new_project:
     # Applies to all files under models/example/
-    elementary:
-      +schema: "elementary"
-    dynamic_tables:
-      +materialized: 'dynamic_table'
-      +target_lag: "{{ 'downstream' if target.name in ('default', 'ci') else '20 minutes' }}"
-      +snowflake_warehouse: "{{ 'transforming' if target.name in ('default', 'ci') else 'developing' }}"
+    +schema: OTHER_SCHEMA
+    marts:
+      +schema: MARTS_SCHEMA
+    # modelfolder:
+    #   +schema: MODEL_FOLDER
+
+seeds:
+  dbt_project_evaluator:
+    dbt_project_evaluator_exceptions:
+      +enabled: false
+
+      
