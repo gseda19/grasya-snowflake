@@ -42,9 +42,9 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   my_new_project:
     # Applies to all files under models/example/
-    +schema: OTHER_SCHEMA
-    marts:
-      +schema: MARTS_SCHEMA
+    # +schema: OTHER_SCHEMA
+    # marts:
+    #   +schema: MARTS_SCHEMA
     # modelfolder:
     #   +schema: MODEL_FOLDER
 
@@ -52,5 +52,3 @@ seeds:
   dbt_project_evaluator:
     dbt_project_evaluator_exceptions:
       +enabled: false
-
-      

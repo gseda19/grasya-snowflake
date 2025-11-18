@@ -2,7 +2,7 @@
     {% set env = target.name | lower %}
     {% set is_marts_model = node.path is not none and 'marts/' in node.path %}
 
-    {%- if env == 'dev' -%}
+    {%- if env != 'dev' -%}
         {# DEV environment logic #}
         {%- if is_marts_model -%}
             {{ custom_schema_name if custom_schema_name is not none else target.schema }}
