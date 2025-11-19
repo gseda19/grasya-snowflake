@@ -7,3 +7,6 @@ models:
         tests:
           - not_null:
               description: "id should be not null"
+      - name: id2
+        tests:
+          -  not_null

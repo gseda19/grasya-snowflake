@@ -11,6 +11,7 @@
 
 with source_data as (
 select 3 as id,
+null as id2
    /* CURRENT_TIMESTAMP() AS updated_at,
     3 as new_number,
     6 as third_number,
