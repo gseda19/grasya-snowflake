@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: foo
+  - name: my_first_dbt_model
     columns:
       - name: id
         tests:
