@@ -8,6 +8,6 @@
     )
 }}
 
-select * from {{ ref('raw') }}
+select * from {{ ref('foo') }}
 
 {% endsnapshot %}

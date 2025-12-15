@@ -26,7 +26,10 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
-
+models:
+  my_dbt_project:
+    +materialized: table
+    +schema: marts
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
