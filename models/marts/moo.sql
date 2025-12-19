@@ -1,1 +1,1 @@
-select 1 as idd
+select 1 as id
