@@ -6,7 +6,7 @@ with table_1 as (
 
 table_2 as (
     select 
-        2 as col_1,
+        2 as col_1_1,
         'matched' as col_2
 )
 
@@ -15,4 +15,4 @@ select
     table_2.*
 from table_1
 left join table_2
-    on table_1.col_1 = table_2.col_1
+    on table_1.col_1 = table_2.col_1_1
