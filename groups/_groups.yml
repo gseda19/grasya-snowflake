@@ -1,8 +1,0 @@
-version: 2
-
-groups:
-  - name: finance
-    owner:
-      email: finance@jaffleshop.com
-    description: For the finance team
-
