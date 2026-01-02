@@ -1,3 +1,3 @@
 select id from {{ref('foo')}}
 union 
-select * from {{ref('baz')}}
+select id from {{ref('baz')}}
