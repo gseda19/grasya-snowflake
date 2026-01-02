@@ -1,5 +1,11 @@
 {{ config (materialized='table') }}
 
-select foo.id, baz.id2 from {{ref('foo')}} as foo
-join {{ref('baz')}} as baz
-on foo.id = baz.id2
+with foo_data as (
+    select * from  {{ref('foo')}} 
+),
+
+baz_data as (
+    select * from {{ref('baz')}}
+)
+
+select * from foo_data
