@@ -1,3 +1,3 @@
 {{ config (materialized='table') }}
 
-select * from {{ref('foo')}}
+select id from {{ref('foo')}}
