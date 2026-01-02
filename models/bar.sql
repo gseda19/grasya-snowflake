@@ -1,6 +1,4 @@
-{{ config(
-    materialized='table'
-) }}
+{{ config(materialized='table') }}
 select
     foo.id
 from {{ ref('foo') }} as foo
