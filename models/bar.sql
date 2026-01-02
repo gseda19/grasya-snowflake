@@ -3,5 +3,5 @@ with combined as (
     union all
     select id from {{ ref('baz') }}
 )
-select id
+select *
 from combined
