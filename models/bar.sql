@@ -1,5 +1,3 @@
-{{ config (materialized='table') }}
+{{ config (materialized='view') }}
 
-select foo.id, baz.id2 from {{ref('foo')}} as foo
-join {{ref('baz')}} as baz
-on foo.id = baz.id2
+select * from {{ref('foo')}}
