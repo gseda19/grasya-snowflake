@@ -1,7 +1,8 @@
-with combined as (
-    select id from {{ ref('foo') }}
-    union all
-    select id from {{ ref('baz') }}
-)
-select *
-from combined
+{{ config(
+    materialized='table'
+) }}
+select
+    foo.id
+from {{ ref('foo') }} as foo
+inner join {{ ref('baz') }} as baz
+    on foo.id = baz.id
