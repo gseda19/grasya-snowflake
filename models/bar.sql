@@ -1,4 +1,3 @@
 select id from {{ref('foo')}}
-union 
+union all
 select id from {{ref('baz')}}
---comment
