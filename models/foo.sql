@@ -1,2 +1,2 @@
-{{ config(schema="grasya_ci_test", materialized="table") }}
+{{ config (materialized='table') }}
 select 1 as id
