@@ -48,16 +48,20 @@ clean-targets: # directories to be removed by `dbt clean`
 on-run-start:
   - >
       {% if target.name == 'ci' %}
-      create or replace transient table DARKWING.STREAMLIT.DBT_CI_SESSION_CONTEXT as
-      select
-        current_role()             as role,
-        current_secondary_roles()  as secondary_roles,
-        current_warehouse()        as warehouse,
-        current_database()         as database_name,
-        current_schema()           as schema_name,
-        current_region()           as region,
-        current_client()           as client,
-        current_session()          as session_id,
-        current_timestamp()        as collected_at
-      ;
+      {% set res = run_query(
+        "select current_role() as role,\
+                current_warehouse() as warehouse,\
+                current_database() as database_name,\
+                current_schema() as schema_name"
+      ) %}
+      {% if execute and res %}
+        {% set row = res.rows[0] %}
+        {{ log(
+          'CI session context -> role=' ~ row['ROLE']
+          ~ ', warehouse=' ~ row['WAREHOUSE']
+          ~ ', database=' ~ row['DATABASE_NAME']
+          ~ ', schema=' ~ row['SCHEMA_NAME'],
+          info=True
+        ) }}
+      {% endif %}
       {% endif %}
