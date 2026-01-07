@@ -45,4 +45,19 @@ clean-targets: # directories to be removed by `dbt clean`
 # instead be materialized as tables. Any models you add to the root of the models folder will
 # continue to be built as views. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
-
+on-run-start:
+  - >
+      {% if target.name == 'ci' %}
+      create or replace transient table DARKWING.STREAMLIT.DBT_CI_SESSION_CONTEXT as
+      select
+        current_role()             as role,
+        current_secondary_roles()  as secondary_roles,
+        current_warehouse()        as warehouse,
+        current_database()         as database_name,
+        current_schema()           as schema_name,
+        current_region()           as region,
+        current_client()           as client,
+        current_session()          as session_id,
+        current_timestamp()        as collected_at
+      ;
+      {% endif %}
