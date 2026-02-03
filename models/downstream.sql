@@ -1,3 +1,2 @@
-select
-    id
+select id
 from {{ref('upstream')}}
