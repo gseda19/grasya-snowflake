@@ -2,7 +2,8 @@ version: 2
 
 models:
   - name: contract_testing
-    columns:
-      - name: id
-        data_type: int      
-            
+    versions:
+      - v: 1
+        columns:
+          - name: id
+            data_type: int
