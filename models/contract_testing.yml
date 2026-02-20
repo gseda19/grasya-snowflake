@@ -5,9 +5,12 @@ models:
     latest_version: 1
     versions:
       - v: 1
+        config:
+          contract: {enforced: true}
         columns:
           - name: id
             data_type: int
+
       - v: 2
         columns:
           - name: id
