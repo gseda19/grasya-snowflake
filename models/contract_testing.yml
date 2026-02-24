@@ -2,21 +2,8 @@ version: 2
 
 models:
   - name: contract_testing
-    config:
-      contract:
-        enforced: true
-    latest_version: 1
     versions:
       - v: 1
         columns:
           - name: id
             data_type: int
-
-      - v: 2
-        columns:
-          - name: id
-            data_type: int
-  - name: foo
-    columns:
-      - name: id
-        data_type: int
