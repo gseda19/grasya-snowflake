@@ -3,16 +3,12 @@ version: 2
 sources:
   - name: DBT_GSEDA
     database: ANALYTICS
-    # schema: YOUR_SCHEMA   # optional but recommended
+    schema: dbt_gseda
 
     tables:
       - name: MY_FIRST_DBT_MODEL
-        loaded_at_field: loaded_at
-
         freshness:
           warn_after:
             count: 1
-            period: minute     # minute | hour | day
-          error_after:
-            count: 9999
-            period: day
+            period: day     # only WARN, never ERROR
+          # no error_after
