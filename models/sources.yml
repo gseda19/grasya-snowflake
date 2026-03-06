@@ -7,8 +7,9 @@ sources:
 
     tables:
       - name: MY_FIRST_DBT_MODEL
-        freshness:
-          warn_after:
-            count: 1
-            period: day     # only WARN, never ERROR
+        config: 
+          freshness:
+            warn_after:
+              count: 1
+              period: day     # only WARN, never ERROR
           # no error_after
