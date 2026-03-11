@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: DBT_GSEDA
+    database: ANALYTICS
+    schema: dbt_gseda
+
+    tables:
+      - name: MY_FIRST_DBT_MODEL
+        config: 
+          freshness:
+            warn_after:
+              count: 1
+              period: day     # only WARN, never ERROR
+          # no error_after

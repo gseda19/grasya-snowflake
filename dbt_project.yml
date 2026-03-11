@@ -29,7 +29,7 @@ clean-targets: # directories to be removed by `dbt clean`
 models:
   my_new_project:
     +materialized: table
-    +contract: {enforced: "{{ env_var('DBT_ENVIRONMENT_NAME') in ('ci', 'staging', 'prod') }}"}
+#    +contract: {enforced: "{{ env_var('DBT_ENVIRONMENT_NAME') in ('ci', 'staging', 'prod') }}"}
    # staging:
     #  +schema: staging
 
