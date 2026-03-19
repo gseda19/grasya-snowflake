@@ -3,4 +3,4 @@ version: 2
 models:
   - name: broken_model
     config:
-      static_analysis: on
+      static_analysis: baseline
