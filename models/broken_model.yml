@@ -1,6 +1,0 @@
-version: 2
-
-models:
-  - name: broken_model
-    config:
-      static_analysis: baseline
