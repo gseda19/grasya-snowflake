@@ -4,3 +4,13 @@ models:
   - name: broken_model
     config:
       static_analysis: off
+
+  - name: foo
+    config:
+      materialized: table
+      primary_key: [id]    # lower-case here is important
+
+  - name: bar
+    config:
+      materialized: table
+      primary_key: [id]    # same pattern
