@@ -11,3 +11,4 @@ models:
     config:
       materialized: table
       primary_key: [id]    # same pattern
+      

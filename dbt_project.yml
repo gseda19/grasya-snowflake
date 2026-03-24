@@ -33,7 +33,7 @@ models:
 data_tests:
   +store_failures: true
   +database: CSE_SANDBOX_DATABASE
-#    +contract: {enforced: "{{ env_var('DBT_ENVIRONMENT_NAME') in ('ci', 'staging', 'prod') }}"}
+  +contract: {enforced: "{{ env_var('DBT_ENVIRONMENT_NAME') in ('ci', 'staging', 'prod') }}"}
    # staging:
     #  +schema: staging
 
