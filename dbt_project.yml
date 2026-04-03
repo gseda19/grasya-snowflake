@@ -26,14 +26,46 @@ clean-targets: # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
-models:
-  my_new_project:
-    +materialized: table
+# models:
+#   my_new_project:
+#     snapshots:
+#       foo_source:
+#         # +schema: new_source
 
-data_tests:
-  +store_failures: true
-  +database: CSE_SANDBOX_DATABASE
-  +contract: {enforced: "{{ env_var('DBT_ENVIRONMENT_NAME') in ('ci', 'staging', 'prod') }}"}
+
+# snapshots:
+#    my_new_project:
+#      foo_source:
+#        +schema: new_schema
+
+
+# models:
+#   my_new_project:
+#     +materialized: table
+snapshots:
+  my_new_project:
+    foo_source:
+      +schema: new_source
+
+# snapshots:
+#   +unique_key: id
+#   +strategy: timestamp
+#   +updated_at: last_modified
+
+#   my_new_project:
+#     source1:
+#       +schema: snapshots_source1
+
+# models:
+#   my_new_project:
+    # snapshots:
+      # source1:
+      #   +materialized: ephemeral
+
+#data_tests:
+  #+store_failures: true
+  #+database: CSE_SANDBOX_DATABASE
+  #+contract: {enforced: "{{ env_var('DBT_ENVIRONMENT_NAME') in ('ci', 'staging', 'prod') }}"}
    # staging:
     #  +schema: staging
 
