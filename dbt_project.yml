@@ -39,9 +39,9 @@ clean-targets: # directories to be removed by `dbt clean`
 #        +schema: new_schema
 
 
-# models:
-#   my_new_project:
-#     +materialized: table
+models:
+  my_new_project:
+    +materialized: table
 snapshots:
   my_new_project:
     snapshots:
