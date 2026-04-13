@@ -44,8 +44,9 @@ clean-targets: # directories to be removed by `dbt clean`
 #     +materialized: table
 snapshots:
   my_new_project:
-    foo_source:
-      +schema: new_source
+    snapshots:
+      foo_source:
+        +schema: new_source
 
 # snapshots:
 #   +unique_key: id
