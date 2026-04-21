@@ -1,10 +1,20 @@
 [sqlfluff]
 templater = dbt
+dialect = snowflake
 # This change (from jinja to dbt templater) will make linting slower
 # because linting will first compile dbt code into data warehouse code.
+# https://docs.sqlfluff.com/en/stable/reference/rules.html
 runaway_limit = 10
 max_line_length = 80
 indent_unit = space
+large_file_skip_byte_limit = 80000
+# Excludes the ordering of columns which forces derived columns to the bottom
+# ST06 is the rule that enforces column ordering (structure.column_order)
+# Excluding all structure and layout rules that might affect column order
+exclude_rules = ST06
+#, L003, L016, L036, L044
+
+
 
 [sqlfluff:indentation]
 tab_space_size = 4
@@ -35,4 +45,16 @@ capitalisation_policy = lower
 capitalisation_policy = lower
 
 [sqlfluff:rules:ambiguous.column_references]  # Number in group by
-group_by_and_order_by_style = implicit
+group_by_and_order_by_style = explicit
+
+[sqlfluff:rules:references.consistent]
+single_table_references = consistent
+
+[sqlfluff:rules:convention.terminator]
+require_final_semicolon = false
+
+[sqlfluff:rules:structure.column_order]
+# Explicitly disable column ordering rule (ST06)
+enabled = false
+
+[sqlfluff:templater:dbt]

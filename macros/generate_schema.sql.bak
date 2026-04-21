@@ -1,18 +1,12 @@
 {% macro generate_schema_name(custom_schema_name, node) -%}
+    {% do log("GEN_SCHEMA node.path = " ~ node.path, info=true) %}
+    {% do log("GEN_SCHEMA node.path length = " ~ (node.path | length), info=true) %}
 
+    {# keep behavior simple to avoid side effects #}
     {%- set default_schema = target.schema -%}
-    {%- if custom_schema_name is none -%}
-
-        {{ default_schema }}
-
-    {%- else -%}
-
-        {%- if target.name == 'prod' -%}
-            {{ custom_schema_name | trim }}
-        {%- else -%}
-            {{ default_schema }}_{{ custom_schema_name | trim }}
-        {%- endif -%}
-
-    {%- endif -%}
-
+    {% if custom_schema_name %}
+      {{ return(custom_schema_name) }}
+    {% else %}
+      {{ return(default_schema) }}
+    {% endif %}
 {%- endmacro %}

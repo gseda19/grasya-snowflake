@@ -42,6 +42,7 @@ clean-targets: # directories to be removed by `dbt clean`
 models:
   my_new_project:
     +materialized: table
+    # +schema: this_is_a_very_long_schema_name_grasya_for_testing
 snapshots:
   my_new_project:
     snapshots:
