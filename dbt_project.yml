@@ -26,14 +26,48 @@ clean-targets: # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
+# models:
+#   my_new_project:
+#     snapshots:
+#       foo_source:
+#         # +schema: new_source
+
+
+# snapshots:
+#    my_new_project:
+#      foo_source:
+#        +schema: new_schema
+
+
 models:
   my_new_project:
     +materialized: table
+    # +schema: this_is_a_very_long_schema_name_grasya_for_testing
+snapshots:
+  my_new_project:
+    snapshots:
+      foo_source:
+        +schema: new_source
 
-data_tests:
-  +store_failures: true
-  +database: CSE_SANDBOX_DATABASE
-  +contract: {enforced: "{{ env_var('DBT_ENVIRONMENT_NAME') in ('ci', 'staging', 'prod') }}"}
+# snapshots:
+#   +unique_key: id
+#   +strategy: timestamp
+#   +updated_at: last_modified
+
+#   my_new_project:
+#     source1:
+#       +schema: snapshots_source1
+
+# models:
+#   my_new_project:
+    # snapshots:
+      # source1:
+      #   +materialized: ephemeral
+
+#data_tests:
+  #+store_failures: true
+  #+database: CSE_SANDBOX_DATABASE
+  #+contract: {enforced: "{{ env_var('DBT_ENVIRONMENT_NAME') in ('ci', 'staging', 'prod') }}"}
    # staging:
     #  +schema: staging
 
@@ -50,23 +84,23 @@ data_tests:
 # instead be materialized as tables. Any models you add to the root of the models folder will
 # continue to be built as views. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
-on-run-start:
-  - >
-      {% if target.name == 'ci' %}
-      {% set res = run_query(
-        "select current_role() as role,\
-                current_warehouse() as warehouse,\
-                current_database() as database_name,\
-                current_schema() as schema_name"
-      ) %}
-      {% if execute and res %}
-        {% set row = res.rows[0] %}
-        {{ log(
-          'CI session context -> role=' ~ row['ROLE']
-          ~ ', warehouse=' ~ row['WAREHOUSE']
-          ~ ', database=' ~ row['DATABASE_NAME']
-          ~ ', schema=' ~ row['SCHEMA_NAME'],
-          info=True
-        ) }}
-      {% endif %}
-      {% endif %}
+# on-run-start:
+#   - >
+#       {% if target.name == 'ci' %}
+#       {% set res = run_query(
+#         "select current_role() as role,\
+#                 current_warehouse() as warehouse,\
+#                 current_database() as database_name,\
+#                 current_schema() as schema_name"
+#       ) %}
+#       {% if execute and res %}
+#         {% set row = res.rows[0] %}
+#         {{ log(
+#           'CI session context -> role=' ~ row['ROLE']
+#           ~ ', warehouse=' ~ row['WAREHOUSE']
+#           ~ ', database=' ~ row['DATABASE_NAME']
+#           ~ ', schema=' ~ row['SCHEMA_NAME'],
+#           info=True
+#         ) }}
+#       {% endif %}
+#       {% endif %}
