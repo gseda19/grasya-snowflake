@@ -1,5 +1,5 @@
 packages:
   - git: https://github.com/gseda19/dbt-pkg-upstream
     name: dbt_pkg_upstream
-    revision: 89c2bf4786d416678aeb31a5bdd0d5af457ab6ef
+    revision: 204969186581066527015b835f620174baefe664
 sha1_hash: 0857382290ae7e254c7fd23dbd427898c93431b7
