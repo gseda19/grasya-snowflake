@@ -1,9 +1,0 @@
-version: 2
-
-snapshots:
-  - name: foo_snapshot
-    relation: ref('foo_ephemeral')
-    config:
-      unique_key: id
-      strategy: timestamp
-      updated_at: updated_at
