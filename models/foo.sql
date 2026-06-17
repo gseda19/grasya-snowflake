@@ -1,1 +1,2 @@
-select 3 as id
+select
+    1 as id;

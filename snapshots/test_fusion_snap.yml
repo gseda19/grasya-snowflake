@@ -1,0 +1,12 @@
+version: 2
+
+snapshots:
+  - name: test_fusion_snap
+    config:
+      target_schema: your_schema
+      strategy: check
+      unique_key:
+        - id
+        - name
+      check_cols:
+        - name

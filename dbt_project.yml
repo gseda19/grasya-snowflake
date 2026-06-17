@@ -8,6 +8,9 @@ config-version: 2
 flags:
   send_anonymous_usage_stats: false
   use_colors: true
+  # warn_error_options:
+  #   silence:
+  #     - 1005
 
   # This setting configures which "profile" dbt uses for this project.
   require_generic_test_arguments_property: true
@@ -43,6 +46,9 @@ models:
   my_new_project:
     +materialized: table
     # +schema: this_is_a_very_long_schema_name_grasya_for_testing
+    # +static_analysis: off
+    +copy_grants: true
+    +transient: false
 snapshots:
   my_new_project:
     snapshots:
