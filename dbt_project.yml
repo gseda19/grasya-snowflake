@@ -42,18 +42,18 @@ clean-targets: # directories to be removed by `dbt clean`
 #        +schema: new_schema
 
 
-models:
-  my_new_project:
-    +materialized: table
-    # +schema: this_is_a_very_long_schema_name_grasya_for_testing
-    # +static_analysis: off
-    +copy_grants: true
-    +transient: false
-snapshots:
-  my_new_project:
-    snapshots:
-      foo_source:
-        +schema: new_source
+# models:
+#   my_new_project:
+#     +materialized: table
+#     # +schema: this_is_a_very_long_schema_name_grasya_for_testing
+#     # +static_analysis: off
+#     +copy_grants: true
+#     +transient: false
+# snapshots:
+#   my_new_project:
+#     snapshots:
+#       foo_source:
+#         +schema: new_source
 
 # snapshots:
 #   +unique_key: id
