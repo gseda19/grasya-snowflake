@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: contract_testing
+    versions:
+      - v: 1
+        columns:
+          - name: id
+            data_type: int
+
+  - name: orders
+    columns:
+      - name: legacy_status        # deprecated column
+        tests:
+          - deprecated_column_not_used:
+              severity: warn

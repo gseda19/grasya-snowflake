@@ -1,0 +1,14 @@
+version: 2
+
+models:
+
+  - name: foo
+    config:
+      materialized: table
+      primary_key: [id]    # lower-case here is important
+
+  - name: bar
+    config:
+      materialized: table
+      primary_key: [id]    # same pattern
+      
