@@ -1,23 +1,60 @@
 [sqlfluff]
 templater = dbt
 dialect = snowflake
-rules = AL01, AL02, AL04, AL05, AL06, AL07, AL08, AL09,
-        AM01, AM02, AM03, AM04, AM05, AM06,
-        CP01, CP02, CP03, CP04, CP05,
-        CV01, CV02, CV03, CV04, CV05, CV06, CV07, CV08, CV09, CV10, CV11,
-        LT01, LT02, LT03, LT04, LT05, LT06, LT07, LT08, LT09, LT10, LT11, LT12, LT13,
-        RF01, RF02, RF03, RF04, RF05, RF06,
-        ST01, ST02, ST03, ST04, ST05, ST06, ST07, ST08, ST09, ST10, ST11
-max_line_length = 120
+# This change (from jinja to dbt templater) will make linting slower
+# because linting will first compile dbt code into data warehouse code.
+# https://docs.sqlfluff.com/en/stable/reference/rules.html
+runaway_limit = 10
+max_line_length = 80
 indent_unit = space
-tab_space_size = 4
- 
-[sqlfluff:templater:dbt]
-project_dir = ./
- 
+large_file_skip_byte_limit = 80000
+# Excludes the ordering of columns which forces derived columns to the bottom
+# ST06 is the rule that enforces column ordering (structure.column_order)
+# Excluding all structure and layout rules that might affect column order
+exclude_rules = ST06
+#, L003, L016, L036, L044
+
+
+
 [sqlfluff:indentation]
-indent_unit = space
 tab_space_size = 4
-indented_joins = false
-indented_ctes = false
-indented_using_on = true
+
+[sqlfluff:layout:type:comma]
+spacing_before = touch
+line_position = trailing
+
+[sqlfluff:rules:capitalisation.keywords] 
+capitalisation_policy = lower
+
+[sqlfluff:rules:aliasing.table]
+aliasing = explicit
+
+[sqlfluff:rules:aliasing.column]
+aliasing = explicit
+
+[sqlfluff:rules:aliasing.expression]
+allow_scalar = False
+
+[sqlfluff:rules:capitalisation.identifiers]
+extended_capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.functions]
+capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.literals]
+capitalisation_policy = lower
+
+[sqlfluff:rules:ambiguous.column_references]  # Number in group by
+group_by_and_order_by_style = explicit
+
+[sqlfluff:rules:references.consistent]
+single_table_references = consistent
+
+[sqlfluff:rules:convention.terminator]
+require_final_semicolon = false
+
+[sqlfluff:rules:structure.column_order]
+# Explicitly disable column ordering rule (ST06)
+enabled = false
+
+[sqlfluff:templater:dbt]
