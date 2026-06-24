@@ -1,5 +1,5 @@
 [sqlfluff]
-templater = dbt
+templater = jinja
 dialect = snowflake
 # This change (from jinja to dbt templater) will make linting slower
 # because linting will first compile dbt code into data warehouse code.
@@ -57,4 +57,4 @@ require_final_semicolon = false
 # Explicitly disable column ordering rule (ST06)
 enabled = false
 
-[sqlfluff:templater:dbt]
+[sqlfluff:templater:jinja]
