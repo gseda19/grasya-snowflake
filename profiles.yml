@@ -1,27 +1,21 @@
-grasya_snowflake:
-  target: dev
+default:
+  target: prod
   outputs:
-    dev_dranzolin:
-      type: snowflake
-      role: 'EXT_ECN_ANALYST'
-      warehouse: 'EXT_ECN_WH'
-      database: 'EXT_ECN'
-      schema: 'DEV_DRANZOLIN'
-      account: ''
-      user: ''
-    dev_elopez:
-      type: snowflake
-      role: 'EXT_ECN_INTERN'
-      warehouse: 'EXT_ECN_WH'
-      database: 'EXT_ECN'
-      schema: 'DEV_ELOPEZ'
-      account: ''
-      user: ''
     prod:
       type: snowflake
-      role: 'EXT_ECN_ANALYST'
-      warehouse: 'EXT_ECN_WH'
-      database: 'EXT_ECN'
-      schema: 'PROD'
-      account: ''
+      account: 'SKA67070'
       user: ''
+      role: 'FAKE_ROLE_DOES_NOT_EXIST'
+      warehouse: 'FAKE_WH_DOES_NOT_EXIST'
+      database: 'FAKE_DB_DOES_NOT_EXIST'
+      schema: 'PROD'
+  target: dev
+  outputs:
+    prod:
+      type: snowflake
+      account: 'SKA67070'
+      user: ''
+      role: 'FAKE_ROLE_DOES_NOT_EXIST'
+      warehouse: 'FAKE_WH_DOES_NOT_EXIST'
+      database: 'FAKE_DB_DOES_NOT_EXIST'
+      schema: 'PROD'
