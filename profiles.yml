@@ -1,0 +1,27 @@
+grasya_snowflake:
+  target: dev
+  outputs:
+    dev_dranzolin:
+      type: snowflake
+      role: 'EXT_ECN_ANALYST'
+      warehouse: 'EXT_ECN_WH'
+      database: 'EXT_ECN'
+      schema: 'DEV_DRANZOLIN'
+      account: ''
+      user: ''
+    dev_elopez:
+      type: snowflake
+      role: 'EXT_ECN_INTERN'
+      warehouse: 'EXT_ECN_WH'
+      database: 'EXT_ECN'
+      schema: 'DEV_ELOPEZ'
+      account: ''
+      user: ''
+    prod:
+      type: snowflake
+      role: 'EXT_ECN_ANALYST'
+      warehouse: 'EXT_ECN_WH'
+      database: 'EXT_ECN'
+      schema: 'PROD'
+      account: ''
+      user: ''
