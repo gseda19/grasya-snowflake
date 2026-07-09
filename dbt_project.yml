@@ -8,6 +8,8 @@ config-version: 2
 flags:
   send_anonymous_usage_stats: false
   use_colors: true
+  warn_error_options:
+    +silence: "{% if target.name == 'prod' %}NoNodesForSelectionCriteria{% elif target.name == 'ci' %}{% endif %}"
   # warn_error_options:
   #   silence:
   #     - 1005
