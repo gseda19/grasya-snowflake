@@ -1,0 +1,21 @@
+default:
+  target: prod
+  outputs:
+    prod:
+      type: snowflake
+      account: 'SKA67070'
+      user: ''
+      role: 'FAKE_ROLE_DOES_NOT_EXIST'
+      warehouse: 'FAKE_WH_DOES_NOT_EXIST'
+      database: 'FAKE_DB_DOES_NOT_EXIST'
+      schema: 'PROD'
+  target: dev
+  outputs:
+    prod:
+      type: snowflake
+      account: 'SKA67070'
+      user: ''
+      role: 'FAKE_ROLE_DOES_NOT_EXIST'
+      warehouse: 'FAKE_WH_DOES_NOT_EXIST'
+      database: 'FAKE_DB_DOES_NOT_EXIST'
+      schema: 'PROD'
