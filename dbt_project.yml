@@ -18,8 +18,7 @@ flags:
   require_generic_test_arguments_property: true
 profile: "default"
 
- on-run-start:
-     - "{{ log('RUN_REASON = ' ~ env_var('DBT_CLOUD_RUN_REASON', 'NOT SET'), info=true) }}"
+
 
 # These configurations specify where dbt should look for different types of files.
 # The `model-paths` config, for example, states that models in this project can be
