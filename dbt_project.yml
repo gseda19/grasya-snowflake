@@ -8,15 +8,15 @@ config-version: 2
 flags:
   send_anonymous_usage_stats: false
   use_colors: true
-  warn_error_options:
-    +silence: "{% if target.name == 'prod' %}NoNodesForSelectionCriteria{% elif target.name == 'ci' %}{% endif %}"
-  # warn_error_options:
+ 
   #   silence:
   #     - 1005
 
   # This setting configures which "profile" dbt uses for this project.
   require_generic_test_arguments_property: true
 profile: "default"
+
+
 
 # These configurations specify where dbt should look for different types of files.
 # The `model-paths` config, for example, states that models in this project can be
