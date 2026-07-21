@@ -1,1 +1,2 @@
-select 4 as id
+select 4 as 
+id
