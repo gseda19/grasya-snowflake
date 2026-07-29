@@ -1,0 +1,22 @@
+version: 2
+
+sources:
+  - name: snowflake_account_usage
+    database: |
+      {%- if  target.name == "NA1" -%} PROD_DB
+      {%- elif target.name == "eu1_prod"  -%} EU1_PROD_DB
+      {%- elif target.name == "na2_prod"  -%} NA2_PROD_DB
+      {%- elif target.name == "na3_prod"  -%} NA3_PROD_DB
+      {%- elif target.name == "ap1_prod"  -%} AP1_PROD_DB
+      {%- else -%} PROD_DB
+      {%- endif -%}
+    schema: |
+      {%- if target.name == "na1_prod_source_from_na1" -%} snowflake_account_usage_na1
+      {%- elif target.name == "na1_prod_source_from_eu1"  -%} snowflake_account_usage_eu1
+      {%- elif target.name == "na1_prod_source_from_na2"  -%} snowflake_account_usage_na2
+      {%- elif target.name == "na1_prod_source_from_na3"  -%} snowflake_account_usage_na3
+      {%- elif target.name == "na1_prod_source_from_ap1"  -%} snowflake_account_usage_ap1
+      {%- else -%} snowflake_account_usage
+      {%- endif -%}
+    tables:
+      - name: query_history
