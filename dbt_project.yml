@@ -116,3 +116,7 @@ models:
       {%- if target.name == "na1_prod_source_from_eu1" -%} dbt_snowflake_monitoring_eu1
       {%- else -%} dbt_snowflake_monitoring
       {%- endif -%}
+
+         vars:
+     snowflake_account_usage_database: PROD_DB
+     snowflake_account_usage_schema: snowflake_account_usage_eu1
