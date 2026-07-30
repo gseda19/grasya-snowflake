@@ -110,9 +110,9 @@ clean-targets: # directories to be removed by `dbt clean
 #         ) }}
 #       {% endif %}
 #       {% endif %}
-models:
-  dbt_snowflake_monitoring:
-    +schema: |
-      {%- if target.name == "na1_prod_source_from_eu1" -%} dbt_snowflake_monitoring_eu1
-      {%- else -%} dbt_snowflake_monitoring
-      {%- endif -%}
+# models:
+#   dbt_snowflake_monitoring:
+#     +schema: |
+#       {%- if target.name == "na1_prod_source_from_eu1" -%} dbt_snowflake_monitoring_eu1
+#       {%- else -%} dbt_snowflake_monitoring
+#       {%- endif -%}
