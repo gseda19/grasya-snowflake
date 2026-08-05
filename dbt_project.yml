@@ -116,3 +116,6 @@ clean-targets: # directories to be removed by `dbt clean
 #       {%- if target.name == "na1_prod_source_from_eu1" -%} dbt_snowflake_monitoring_eu1
 #       {%- else -%} dbt_snowflake_monitoring
 #       {%- endif -%}
+flags:
+  warn_error_options:
+    +silence: "{% if target.name == 'prod' %}NoNodesForSelectionCriteria{% elif target.name == 'ci' %}{% endif %}"
