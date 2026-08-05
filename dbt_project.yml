@@ -5,13 +5,14 @@ name: "my_new_project"
 version: "1.0.0"
 config-version: 2
 
-flags:
-  send_anonymous_usage_stats: false
-  use_colors: true
+# flags:
+#   send_anonymous_usage_stats: false
+#   use_colors: true
+  
 
 
-  # This setting configures which "profile" dbt uses for this project.
-  require_generic_test_arguments_property: true
+#   # This setting configures which "profile" dbt uses for this project.
+#   require_generic_test_arguments_property: true
 profile: "default"
 
 
@@ -116,6 +117,7 @@ clean-targets: # directories to be removed by `dbt clean
 #       {%- if target.name == "na1_prod_source_from_eu1" -%} dbt_snowflake_monitoring_eu1
 #       {%- else -%} dbt_snowflake_monitoring
 #       {%- endif -%}
+
 flags:
-  warn_error_options:
-    +silence: "{% if target.name == 'prod' %}NoNodesForSelectionCriteria{% elif target.name == 'ci' %}{% endif %}"
+  silence:
+      - NoNodesForSelectionCriteria
