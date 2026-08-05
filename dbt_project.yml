@@ -119,5 +119,5 @@ clean-targets: # directories to be removed by `dbt clean
 #       {%- endif -%}
 
 flags:
-  warn_error_options:
+  silence:
       - NoNodesForSelectionCriteria
