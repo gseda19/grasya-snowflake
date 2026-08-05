@@ -11,8 +11,8 @@ config-version: 2
   
 
 
-  # This setting configures which "profile" dbt uses for this project.
-  require_generic_test_arguments_property: true
+#   # This setting configures which "profile" dbt uses for this project.
+#   require_generic_test_arguments_property: true
 profile: "default"
 
 
@@ -120,5 +120,4 @@ clean-targets: # directories to be removed by `dbt clean
 
 flags:
   warn_error_options:
-    +silence: "{% if target.name == 'prod' %}NoNodesForSelectionCriteria{% elif target.name == 'ci' %}{% endif %}"
-    
+      - NoNodesForSelectionCriteria
