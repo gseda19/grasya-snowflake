@@ -118,4 +118,4 @@ clean-targets: # directories to be removed by `dbt clean
 #       {%- endif -%}
 flags:
   warn_error_options:
-    +silence: "{% if target.name == 'prod' %}NoNodesForSelectionCriteria{% elif target.name == 'ci' %}{% endif %}"
+    silence: "{{ ['NoNodesForSelectionCriteria'] if target.name == 'ci' else [] }}"
