@@ -118,8 +118,3 @@ clean-targets: # directories to be removed by `dbt clean
 #       {%- else -%} dbt_snowflake_monitoring
 #       {%- endif -%}
 
-flags:
-  warn_error_options:
-    silence:
-      - NoNodesForSelectionCriteria
-      - NoNodesSelected
