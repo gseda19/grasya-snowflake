@@ -1,1 +1,1 @@
-select 6 as id
+select 1 as id
