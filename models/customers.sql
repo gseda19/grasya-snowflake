@@ -1,3 +1,5 @@
+{{ config(enabled = target.name == 'dev') }}
+
 select
     1 as customer_id,
     'Grace' as customer_name
