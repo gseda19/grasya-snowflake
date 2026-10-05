@@ -1,30 +1,53 @@
+# ---------------------------------------------------------------
+# Object:       .sqlfluff
+# Create Date:  2026-05-11
+# Author:       Jaspreet Singh
+# Description:  SQLFluff linting configuration for the Retail dbt
+#               project. Enforces coding standards defined in the
+#               team's style guide: leading commas, uppercase SQL
+#               keywords, lowercase identifiers, CTEs over
+#               subqueries, explicit aliasing, and BigQuery dialect.
+#
+# Templater:    jinja (NOT dbt) — avoids version incompatibility
+#               between sqlfluff-templater-dbt and dbt-core 1.7.x.
+#               `ignore = templating` suppresses unresolvable
+#               ref()/source() errors during local linting.
+#
+# CHANGE HISTORY
+# Date          Author              Comments
+# ------------- ------------------- --------------------------------
+# 2026-05-11    Jaspreet Singh      Updated for coverage and vscode usage
+# 2026-05-11    Jaspreet Singh      Removed ST06 (column order) — conflicts
+#                                   with style guide Keys→Dims→Metrics→Timestamps
+# 2026-09-22    Jaspreet Singh      Added dbt-specific rules DBT01-DBT05
+#                                   (see dbt/DBT_SPECIFIC_LINT_RULES.md)
+# 2026-09-22    Jaspreet Singh      Reverted templater dbt->jinja: sqlfluff-
+#                                   templater-dbt incompatible with installed
+#                                   dbt-core 1.7.19 (dbt_date needs >=1.10.5)
+# ---------------------------------------------------------------
+
 [sqlfluff]
+
+rules =  AL01,AL02,AL03,AL04,AL06,AL08,
+         LT02,LT04,LT07,LT08,LT09,LT10,LT11,LT12,LT13,
+         AM01,AM03,AM04,AM05,AM06,AM07,
+         CV01,CV02,CV04,CV05,
+         CP01,CP02,CP03,CP04,CP05,
+         RF02,RF03,RF04,
+         ST01,ST02,ST04,ST05,
+         JJ01,
+         DBT01,DBT02,DBT03,DBT04,DBT05
+                 
+                 
 templater = dbt
-dialect = snowflake
-# This change (from jinja to dbt templater) will make linting slower
-# because linting will first compile dbt code into data warehouse code.
-# https://docs.sqlfluff.com/en/stable/reference/rules.html
-runaway_limit = 10
-max_line_length = 80
-indent_unit = space
-large_file_skip_byte_limit = 80000
-# Excludes the ordering of columns which forces derived columns to the bottom
-# ST06 is the rule that enforces column ordering (structure.column_order)
-# Excluding all structure and layout rules that might affect column order
-exclude_rules = ST06
-#, L003, L016, L036, L044
+dialect = bigquery
+ignore = templating
+large_file_skip_byte_limit = 0
+max_line_length = 88
 
 
 
-[sqlfluff:indentation]
-tab_space_size = 4
-
-[sqlfluff:layout:type:comma]
-spacing_before = touch
-line_position = trailing
-
-[sqlfluff:rules:capitalisation.keywords] 
-capitalisation_policy = lower
+################  aliasing  ################
 
 [sqlfluff:rules:aliasing.table]
 aliasing = explicit
@@ -32,29 +55,91 @@ aliasing = explicit
 [sqlfluff:rules:aliasing.column]
 aliasing = explicit
 
+[sqlfluff:rules:aliasing.length]
+min_alias_length = 3
+max_alias_length = 30
+
 [sqlfluff:rules:aliasing.expression]
-allow_scalar = False
+allow_scalar = True
+
+[sqlfluff:rules:aliasing.unique.table]
+
+
+
+################  layout  ################
+
+
+[sqlfluff:rules:layout.spacing]
+no_trailing_whitespace = true
+extra_whitespace = false
+
+[sqlfluff:layout:type:comma]
+line_position = leading
+
+
+[sqlfluff:layout:type:alias_expression]
+spacing_before = align
+align_within = select_clause
+align_scope = bracketed
+
+[sqlfluff:rules:layout.set_operators]
+set_operator_on_new_line = ['UNION', 'UNION ALL']
+
+[sqlfluff:rules:layout.functions]
+no_space_after_function_name = true
+
+
+################  layout - indentation  ################
+
+[sqlfluff:indentation]
+indented_joins = False
+indented_using_on = True
+template_blocks_indent = False
+indented_ctes = True
+
+
+################  ambiguous  ################
+
+[sqlfluff:rules:ambiguous.join]
+fully_qualify_join_types = inner
+
+[sqlfluff:rules:ambiguous.column_references]     
+group_by_and_order_by_style = explicit
+
+
+
+################  capitalisation  ################
+
+[sqlfluff:rules:capitalisation.keywords]
+capitalisation_policy = upper
 
 [sqlfluff:rules:capitalisation.identifiers]
 extended_capitalisation_policy = lower
 
 [sqlfluff:rules:capitalisation.functions]
-capitalisation_policy = lower
+extended_capitalisation_policy = upper
 
+#e.g.NULL, TRUE, FALSE
 [sqlfluff:rules:capitalisation.literals]
-capitalisation_policy = lower
+capitalisation_policy = upper
 
-[sqlfluff:rules:ambiguous.column_references]  # Number in group by
-group_by_and_order_by_style = explicit
+#e.g. INT, VARCHAR
+[sqlfluff:rules:capitalisation.types]
+extended_capitalisation_policy = upper
 
-[sqlfluff:rules:references.consistent]
-single_table_references = consistent
+[sqlfluff:rules:layout.long_lines]
+ignore_comment_lines = True
 
-[sqlfluff:rules:convention.terminator]
-require_final_semicolon = false
+[sqlfluff:rules:layout.cte_newline]
+newline_after_final_cte = True
 
-[sqlfluff:rules:structure.column_order]
-# Explicitly disable column ordering rule (ST06)
-enabled = false
 
-[sqlfluff:templater:jinja]
+################  structure  ################
+
+[sqlfluff:rules:structure.nested_case]
+
+
+################  jinja  ################
+
+[sqlfluff:rules:jinja.padding]
+single_space = true
