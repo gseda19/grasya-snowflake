@@ -1,1 +1,1 @@
-select 3 as id
+SELECT 3 AS id
