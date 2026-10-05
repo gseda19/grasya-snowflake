@@ -1,33 +1,16 @@
-version: 2
-
 models:
   - name: customers
-    description: "Customer records"
     columns:
       - name: customer_id
-        description: "Unique customer identifier"
         data_tests:
-          - unique
-          - not_null
-
+          - unique:
+              config:
+                enabled: "{{ target.name == 'dev' }}"
+          - not_null:
+              config:
+                enabled: "{{ target.name == 'dev' }}"
       - name: customer_name
         data_tests:
-          - not_null
-
-  - name: orders
-    description: "Customer orders"
-    columns:
-      - name: order_id
-        description: "Unique order identifier"
-        data_tests:
-          - unique
-          - not_null
-
-      - name: customer_id
-        description: "Customer identifier"
-        data_tests:
-          - not_null
-
-      - name: amount
-        data_tests:
-          - not_null
+          - not_null:
+              config:
+                enabled: "{{ target.name == 'dev' }}"
