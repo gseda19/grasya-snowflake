@@ -1,0 +1,1 @@
+select '{{ env_var("DBT_ENV_STATIC_ANALYSIS", "NOT_SET") }}' as v
