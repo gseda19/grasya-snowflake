@@ -1,0 +1,14 @@
+version: 2
+models:
+  - name: ent_media_agency
+    columns:
+      - name: pk_agency
+        data_tests:
+          - not_null
+  - name: ent_agency_account
+    columns:
+      - name: fk_agency
+        data_tests:
+        - relationships:
+            to: ref('ent_media_agency')
+            field: pk_agency

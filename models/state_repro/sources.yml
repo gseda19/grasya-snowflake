@@ -1,0 +1,8 @@
+version: 2
+sources:
+  - name: raw
+    database: ANALYTICS
+    schema: prod_grasya
+    tables:
+      - name: agencies
+      - name: accounts
