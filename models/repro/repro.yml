@@ -1,0 +1,7 @@
+version: 2
+models:
+  - name: m_b
+    columns:
+      - name: id
+        data_tests:
+          - not_null
