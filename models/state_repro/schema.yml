@@ -10,5 +10,6 @@ models:
       - name: fk_agency
         data_tests:
         - relationships:
-            to: ref('ent_media_agency')
-            field: pk_agency
+            arguments: 
+              to: ref('ent_media_agency')
+              field: pk_agency
