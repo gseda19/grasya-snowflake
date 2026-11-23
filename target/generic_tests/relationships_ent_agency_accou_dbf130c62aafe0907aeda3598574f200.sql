@@ -1,0 +1,1 @@
+{{ test_relationships(column_name="fk_agency", field="pk_agency", model=get_where_subquery(ref('ent_agency_account')), to=ref('ent_media_agency')) }}
