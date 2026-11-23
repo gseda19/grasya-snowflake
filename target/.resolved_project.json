@@ -1,1 +1,7 @@
-{"metadata": {"dbt_schema_version": "https://schemas.getdbt.com/dbt/resolved_projects/v1.json", "dbt_version": "2026.11.18+0e4e66f", "generated_at": "2026-11-23T04:24:50.851611Z", "invocation_id": "562fc366-2274-4e9f-9f4f-9d3de3049ba7", "invocation_started_at": "2026-11-23T04:24:49.604941Z", "env": {}}, "projects": {}}
+{
+  "metadata": {
+    "dbt_schema_version": "https://schemas.getdbt.com/dbt/resolved_projects/v1.json",
+    "generated_at": "2026-11-23T04:37:17.014291031Z"
+  },
+  "projects": {}
+}
