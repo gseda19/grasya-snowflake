@@ -1,1 +1,0 @@
-select 'strict' as v
