@@ -1,0 +1,1 @@
+{{ test_not_null(column_name="pk_agency", model=get_where_subquery(ref('ent_media_agency'))) }}
