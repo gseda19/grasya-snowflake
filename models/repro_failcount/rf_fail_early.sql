@@ -1,3 +1,2 @@
-{{ config(materialized='view', tags=['repro_failcount']) }}
--- Every filler test depends on this, so they all run after the failure has happened.
-select 1 as id
+{{ config(materialized='table', tags=['repro_failcount'], static_analysis='off') }}
+select * from this_table_does_not_exist_xyz
