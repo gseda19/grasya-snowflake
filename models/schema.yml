@@ -1,0 +1,16 @@
+models:
+  - name: customers
+    columns:
+      - name: customer_id
+        data_tests:
+          - unique:
+              config:
+                enabled: "{{ target.name == 'dev' }}"
+          - not_null:
+              config:
+                enabled: "{{ target.name == 'dev' }}"
+      - name: customer_name
+        data_tests:
+          - not_null:
+              config:
+                enabled: "{{ target.name == 'dev' }}"
